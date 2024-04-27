@@ -1,6 +1,6 @@
-# README.md for Deploying Roots/Bedrock WordPress to DigitalOcean
+# Deploying Roots/Bedrock WordPress to DigitalOcean
 
-This README provides a comprehensive guide on deploying Roots/Bedrock WordPress on a DigitalOcean Droplet using Nginx, PHP, MySQL, Let's Encrypt, UFW, and other essential tools.
+This provides a comprehensive guide on deploying Roots/Bedrock WordPress on a DigitalOcean Droplet using Nginx, PHP, MySQL, Let's Encrypt, UFW, and other essential tools.
 
 ## Table of Contents
 
