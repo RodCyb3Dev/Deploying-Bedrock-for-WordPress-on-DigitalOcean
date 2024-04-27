@@ -138,10 +138,35 @@ sudo ufw allow OpenSSH
 
 ### Step 8: Clone the Repository
 
+_To be able to clone a repository you will need to add DigitalOcean Droplet's public SSH key if already exists and if not below are the steps._
+
 ```bash
 # Navigate to the web root directory:
 cd /var/www/
+```
 
+<details>
+<summary><strong>Configuring Git</strong></summary>
+
+```bash
+# Replace username and email address in the following steps with the ones you use with your GitHub account.
+git config --global user.name "USERNAME"
+git config --global user.email "YOUR@EMAIL.com"
+ssh-keygen -t ed25519 -C "YOUR@EMAIL.com"
+
+# Next take the newly generated SSH key and add it to your GitHub account.
+cat ~/.ssh/id_ed25519.pub
+
+# Check and see if it worked:
+ssh -T git@github.com
+
+# You should get a message like this:
+Hi USERNAME! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+</details>
+
+```bash
 # Clone the repository recursively:
 sudo git clone --recursive git@github.com:your-username/repo-name.git wp-bedrock
 ```
