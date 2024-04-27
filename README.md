@@ -48,6 +48,8 @@ Deploying Roots/Bedrock WordPress to DigitalOcean involves setting up a server e
 
 ### Step 2: Connect to Your Droplet
 
+_Assuming your public SSH key has been added to your DigitalOcean Droplet's `~/.ssh/authorized_keys`._
+
 ```bash
 ssh root@your_droplet_ip
 ```
