@@ -139,6 +139,8 @@ sudo ufw allow OpenSSH
 ### Step 8: Install Composer, Node, and Yarn
 
 ```bash
+sudo apt install php
+sudo apt install php-cli
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 sudo chmod +x /usr/local/bin/composer
@@ -146,6 +148,84 @@ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
 npm install --global yarn
 ```
+
+<details>
+<summary><strong>If you encounter any issues install PHP with the above try this.</strong></summary>
+
+If you need to install a specific version of PHP (in this case, version 8.2.3), you'll need to ensure that the appropriate PHP version is available in your package manager's repositories. Since PHP 8.2.3 might not be available by default, you may need to add a third-party repository or compile PHP from source.
+
+Here's how you can install PHP 8.2.3 on Ubuntu:
+
+1. **Add Ondřej Surý's PHP PPA**:
+
+    ```bash
+    sudo add-apt-repository ppa:ondrej/php
+    sudo apt update
+    ```
+
+2. **Install PHP 8.2.3**:
+
+    ```bash
+    sudo apt install php8.2
+    ```
+
+3. **Install PHP CLI**:
+
+    ```bash
+    sudo apt install php8.2-cli
+    ```
+
+4. **To make PHP 8.2.3 the default version on your system**:
+   you can use the `update-alternatives` command to set the default PHP version. Here's how you can do it:
+
+    1. **List Available PHP Versions**:
+    
+        First, list the available PHP versions on your system:
+    
+        ```bash
+        update-alternatives --display php
+        ```
+    
+        This command will show you the available PHP versions along with their paths.
+    
+    2. **Set PHP 8.2.3 as Default**:
+    
+        Once you've confirmed that PHP 8.2.3 is installed and listed, you can set it as the default version using the following command:
+    
+        ```bash
+        sudo update-alternatives --set php /usr/bin/php8.2
+        ```
+    
+        This command sets the PHP 8.2.3 executable (`php8.2`) as the default version.
+    
+    3. **Verify Default PHP Version**:
+    
+        To verify that PHP 8.2.3 is now the default version, you can check the PHP version again:
+    
+        ```bash
+        php -v
+        ```
+    
+        This should display PHP 8.2.3 as the installed version.
+
+6. **Retry Composer Installation**:
+
+    After installing PHP 8.2.3, you can retry installing Composer using the same command:
+
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    ```
+
+7. **Move Composer to `/usr/local/bin`**:
+
+    Once Composer is successfully downloaded, move it to the `/usr/local/bin` directory:
+
+    ```bash
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
+
+By following these steps, you should be able to install PHP 8.2.3 and Composer on your system. If you encounter any issues or need further assistance, feel free to ask!
+</details>
 
 ### Step 9: Clone the Repository
 
@@ -188,11 +268,11 @@ Configure `.env` file with your environment settings in wp-bedrock.
 
 ```bash
 cd wp-bedrock
-composer install
+composer install --ignore-platform-reqs
 
 # Assuming you have a theme that uses composer and npm or yarn to install dependencies
 cd web/app/themes/sage-theme
-composer install
+composer install --ignore-platform-reqs
 yarn install && yarn build:production
 ```
 
