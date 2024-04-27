@@ -14,8 +14,8 @@ This provides a comprehensive guide on deploying Roots/Bedrock WordPress on a Di
   - [Configure Nginx with Public IP Address](#step-5-configure-nginx-with-public-ip-address)
   - [Install Let's Encrypt for SSL](#step-6-install-lets-encrypt-for-ssl)
   - [Configure UFW Firewall](#step-7-configure-ufw-firewall)
-  - [Clone the Repository](#step-8-clone-the-repository)
-  - [Install Composer, Node, and Yarn](#step-9-install-composer-node-and-yarn)
+  - [Install Composer, Node, and Yarn](#step-8-install-composer-node-and-yarn)
+  - [Clone the Repository](#step-9-clone-the-repository)
   - [Install WordPress with Bedrock](#step-10-install-wordpress-with-bedrock)
   - [Finalize the Installation](#step-11-finalize-the-installation)
   - [Secure Your WordPress Installation](#step-12-secure-your-wordpress-installation)
@@ -136,7 +136,18 @@ sudo ufw allow 'Nginx Full'
 sudo ufw allow OpenSSH
 ```
 
-### Step 8: Clone the Repository
+### Step 8: Install Composer, Node, and Yarn
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+npm install --global yarn
+```
+
+### Step 9: Clone the Repository
 
 _To be able to clone a repository you will need to add DigitalOcean Droplet's public SSH key if already exists and if not below are the steps._
 
@@ -169,17 +180,6 @@ Hi USERNAME! You've successfully authenticated, but GitHub does not provide shel
 ```bash
 # Clone the repository recursively:
 sudo git clone --recursive git@github.com:your-username/repo-name.git wp-bedrock
-```
-
-### Step 9: Install Composer, Node, and Yarn
-
-```bash
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-sudo chmod +x /usr/local/bin/composer
-curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
-npm install --global yarn
 ```
 
 ### Step 10: Install WordPress with Bedrock
