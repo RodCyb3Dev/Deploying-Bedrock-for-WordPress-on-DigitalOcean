@@ -103,7 +103,7 @@ sudo mysql_secure_installation
 3. Enable the site by creating a symbolic link:
 
    ```bash
-   sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/`
+   sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
    ```
 
 5. Test the Nginx configuration and reload:
