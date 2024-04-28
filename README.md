@@ -268,6 +268,14 @@ Configure `.env` file with your environment settings in wp-bedrock.
 
 ```bash
 cd wp-bedrock
+
+# Set Up Environment Variables:
+cp .env.example .env
+
+# To edit .env file run:
+vim .env
+
+# Instal root dependencies
 composer install --ignore-platform-reqs
 
 # Assuming you have a theme that uses composer and npm or yarn to install dependencies
