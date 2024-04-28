@@ -310,9 +310,16 @@ sudo mysql -u root -p
 # Create a database for WordPress (DB_NAME):
 CREATE DATABASE wordpress;
 
-# Create a MySQL user and grant privileges (DB_USER, DB_HOST, and DB_PASSWORD):
-GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost' IDENTIFIED BY 'password';
+# Create a new user with a password using the CREATE USER statement:
+CREATE USER 'db'@'localhost' IDENTIFIED BY 'db_password';
+
+# Grant Privileges on the wordpress database:
+GRANT ALL PRIVILEGES ON wordpress.* TO 'db'@'localhost';
+
+# Apply the changes by flushing the privileges:
 FLUSH PRIVILEGES;
+
+# Exit the MySQL shell:
 EXIT;
 ```
 
