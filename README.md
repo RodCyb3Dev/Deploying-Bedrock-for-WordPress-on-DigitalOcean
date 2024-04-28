@@ -82,7 +82,7 @@ sudo mysql_secure_installation
     ```bash
     server {
         listen 80;
-        server_name your_droplet_ip; # or use a domain (this will need additional DNS records configuration)
+        server_name your-domain.com www.your-domain.com;
         root /var/www/wp-bedrock/web;
     
         index index.php index.html index.htm;
@@ -117,10 +117,12 @@ sudo mysql_secure_installation
 
 ```bash
 # Install Certbot and the Nginx plugin:
-sudo apt install certbot python3-certbot-nginx -y
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx
 
 # Obtain an SSL certificate for your domain or (your_droplet public IP address):
-sudo certbot --nginx -d (your-domain.com OR your_droplet_ip)
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
 ```
 
 Follow the prompts to configure SSL.
